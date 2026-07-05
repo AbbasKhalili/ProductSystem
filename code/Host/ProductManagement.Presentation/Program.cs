@@ -1,7 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
 using ProductManagement.Bootstrap;
 using ProductManagement.Persistance.Mappings;
@@ -10,8 +9,6 @@ using ProductManagement.Security;
 using Serilog;
 using Shared.Core;
 using Shared.Serilog;
-using Microsoft.AspNetCore.OpenApi;
-using Microsoft.AspNetCore.Mvc;
 using Scalar.AspNetCore;
 
 const string appName = "ProductManagement.Service";
@@ -32,7 +29,6 @@ try
     if (builder.Environment.IsProduction())
         builder.Configuration.AddEnvironmentVariables();
 
-    //builder.Services.RegisterSwagger(appName);
     builder.Services.AddOpenApi();
 
     builder.AddCORS();
@@ -68,7 +64,6 @@ try
     if (!app.Environment.IsDevelopment())
     {
         app.UseExceptionHandlerMiddleware();
-        app.UseHsts();
     }
 
     if (app.Environment.IsDevelopment())
