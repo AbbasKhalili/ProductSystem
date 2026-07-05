@@ -10,6 +10,9 @@ using ProductManagement.Security;
 using Serilog;
 using Shared.Core;
 using Shared.Serilog;
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.AspNetCore.Mvc;
+using Scalar.AspNetCore;
 
 const string appName = "ProductManagement.Service";
 Log.Logger = SerilogFactory.CreateLogger(appName);
@@ -28,8 +31,9 @@ try
 
     if (builder.Environment.IsProduction())
         builder.Configuration.AddEnvironmentVariables();
-    
-    builder.Services.RegisterSwagger(appName);
+
+    //builder.Services.RegisterSwagger(appName);
+    builder.Services.AddOpenApi();
 
     builder.AddCORS();
 
@@ -49,6 +53,9 @@ try
     builder.Services.AddHealthChecks();
 
 
+
+
+
     var app = builder.Build();
 
     
@@ -66,27 +73,26 @@ try
 
     if (app.Environment.IsDevelopment())
     {
-        app.UseSwagger();
-        app.UseSwaggerUI(c =>
+        app.MapOpenApi();
+        app.MapScalarApiReference("/scalar", a =>
         {
-            c.SwaggerEndpoint($"/swagger/v1/swagger.json", $"{appName} - V1");
-            c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+            
         });
+
+        //app.UseSwagger();
+
+        
+
+        //app.MapScalarUI("v1"); // This maps /scalar endpoint using the v1 OpenAPI doc
+
+        //app.UseSwagger();
+        //app.UseSwaggerUI(c =>
+        //{
+        //    c.SwaggerEndpoint($"/swagger/v1/swagger.json", $"{appName} - V1");
+        //    c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+        //});
     }
 
-    app.MapGet("/", () =>
-    {
-        if (app.Environment.IsDevelopment())
-        {
-            return Results.Redirect("/swagger/index.html");
-        }
-
-        return Results.Ok(new
-        {
-            Service = appName,
-            Status = "Running"
-        });
-    });
     app.MapHealthChecks("/health/live");
 
     app.MapHealthChecks("/health/ready",
