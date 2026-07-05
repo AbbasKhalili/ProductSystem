@@ -74,23 +74,14 @@ try
     if (app.Environment.IsDevelopment())
     {
         app.MapOpenApi();
-        app.MapScalarApiReference("/scalar", a =>
+        app.MapScalarApiReference(options =>
         {
-            
+            options
+                .WithTitle($"{appName} API")
+                .WithTheme(ScalarTheme.BluePlanet)
+                .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
         });
 
-        //app.UseSwagger();
-
-        
-
-        //app.MapScalarUI("v1"); // This maps /scalar endpoint using the v1 OpenAPI doc
-
-        //app.UseSwagger();
-        //app.UseSwaggerUI(c =>
-        //{
-        //    c.SwaggerEndpoint($"/swagger/v1/swagger.json", $"{appName} - V1");
-        //    c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
-        //});
     }
 
     app.MapHealthChecks("/health/live");
