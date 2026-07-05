@@ -7,13 +7,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.9" />
-        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="10.0.9" />
-        <PackageReference Include="Scalar.AspNetCore" Version="2.16.10" />
+      <Compile Remove="Endpoints\**" />
+      <Content Remove="Endpoints\**" />
+      <EmbeddedResource Remove="Endpoints\**" />
+      <None Remove="Endpoints\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Endpoints\" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.9" />
+        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="10.0.9" />
+        <PackageReference Include="Scalar.AspNetCore" Version="2.16.10" />
     </ItemGroup>
 
     <ItemGroup>
