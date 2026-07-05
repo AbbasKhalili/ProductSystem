@@ -13,12 +13,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ProductManagement.Bootstrap\ProductManagement.Bootstrap.csproj" />
-      <ProjectReference Include="..\Shared.Presentation\Shared.Presentation.csproj" />
+      <Folder Include="Endpoints\" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Endpoints\" />
+      <ProjectReference Include="..\..\Infrastructure\ProductManagement.Bootstrap\ProductManagement.Bootstrap.csproj" />
+      <ProjectReference Include="..\..\shared\Shared.Presentation\Shared.Presentation.csproj" />
     </ItemGroup>
 
 </Project>

@@ -19,10 +19,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\ProductManagement.Application\ProductManagement.Application.csproj" />
-	  <ProjectReference Include="..\ProductManagement.Domain.Contract\ProductManagement.Domain.Contract.csproj" />
+	  <ProjectReference Include="..\..\code\application\ProductManagement.Application\ProductManagement.Application.csproj" />
+	  <ProjectReference Include="..\..\code\domain\ProductManagement.Domain.Contract\ProductManagement.Domain.Contract.csproj" />
 	  <ProjectReference Include="..\ProductManagement.Domain.Tests.Unit\ProductManagement.Domain.Tests.Unit.csproj" />
-	  <ProjectReference Include="..\ProductManagement.Domain\ProductManagement.Domain.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
