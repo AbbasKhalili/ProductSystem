@@ -18,6 +18,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\code\interface\ProductManagement.Interface.ReadModel\ProductManagement.Interface.ReadModel.csproj" />
 	  <ProjectReference Include="..\..\code\interface\ProductManagement.Interface.WriteModel\ProductManagement.Interface.WriteModel.csproj" />
 	</ItemGroup>
 
