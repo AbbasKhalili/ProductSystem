@@ -10,7 +10,7 @@
                 ThrowException();
         }
 
-        public static void AgainstNull<T>(T value) where T : class
+        public static void AgainstNull<T>(T? value) where T : class
         {
             if (value == null)
                 ThrowException();

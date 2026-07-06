@@ -1,4 +1,5 @@
 ﻿using ProductManagement.Domain.Products;
+using ProductManagement.Domain.Products.Exceptions;
 using ProductManagement.Interface.Contracts.Products.DTOs;
 using ProductManagement.Interface.Contracts.Products.Services;
 using ProductManagement.Interface.ReadModel.Mappers;
@@ -7,11 +8,14 @@ using Shared.Presentation;
 
 namespace ProductManagement.Interface.ReadModel
 {
-    public class ProductFacadeQuery(IProductRepository productRepository) : IProductFacadeQuery
+    public class ProductFacadeQuery(IProductQueryRepository productRepository) : IProductFacadeQuery
     {
         public async Task<JsonResponse<ProductDto>> Get(Guid id)
         {
             var product = await productRepository.GetByIdAsync(id);
+            
+            Guard<ProductNotFoundException>.AgainstNull(product);
+
             return JsonResponse<ProductDto>.Success(ProductMappers.Map(product));
         }
 

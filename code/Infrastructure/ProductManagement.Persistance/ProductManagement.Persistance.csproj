@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\domain\ProductManagement.Domain\ProductManagement.Domain.csproj" />
+    <ProjectReference Include="..\..\interface\ProductManagement.Interface.ReadModel\ProductManagement.Interface.ReadModel.csproj" />
     <ProjectReference Include="..\..\shared\Shared.EF\Shared.EF.csproj" />
     <ProjectReference Include="..\ProductManagement.Core\ProductManagement.Core.csproj" />
     

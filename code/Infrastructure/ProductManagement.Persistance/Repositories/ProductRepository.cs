@@ -2,10 +2,10 @@
 
 namespace ProductManagement.Persistance.Repositories
 {
-    public class ProductRepository(IDbContext context, IQueryContext queryContext) : IProductRepository
+    public class ProductRepository(IDbContext context) : IProductRepository
     {
         private DbSet<Product> DbSet => context.DbSet<Product>();
-        private DbSet<Product> QueryDbSet => queryContext.DbSet<Product>();
+        
 
         public async Task AddAsync(Product product)
         {
@@ -29,7 +29,7 @@ namespace ProductManagement.Persistance.Repositories
 
         public async Task<IReadOnlyList<Product>> GetAllAsync()
         {
-            return await QueryDbSet.ToListAsync();
+            return await DbSet.ToListAsync();
         }
     }
 }
